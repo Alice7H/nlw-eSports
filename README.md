@@ -29,11 +29,9 @@ O Hoppscotch é um PWA ou (Progressive Web App), ou seja, é a página web ou si
 
 ```json
 {
-  //...
   "scripts": {
     "build": "tsc"
   }
-  //...
 }
 ```
 
@@ -119,7 +117,7 @@ Desenvolvemos parte do nosso projeto, fazendo a interface web e mobile da aplica
 
 - Modificamos o arquivo de configuração do tailwind de acordo com os diretórios desejados.
 
-- Criamos o arquivo de configuração do tailwind e do postcss com o comando `npx tailwind --init -p`
+- Criamos o arquivo de configuração do tailwind e do postcss com o comando `npx tailwind init -p`
 
 - Instalamos o phosphor-react para adicionar ícones, usando o comando `npm i phosphor-react`.
 
