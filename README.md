@@ -117,7 +117,7 @@ Desenvolvemos parte do nosso projeto, fazendo a interface web e mobile da aplica
 
 - Modificamos o arquivo de configuração do tailwind de acordo com os diretórios desejados.
 
-- Criamos o arquivo de configuração do tailwind e do postcss com o comando `npx tailwind init -p`
+- Criamos o arquivo de configuração do tailwind e do postcss com o comando `npx tailwindcss init -p`
 
 - Instalamos o phosphor-react para adicionar ícones, usando o comando `npm i phosphor-react`.
 
@@ -152,3 +152,5 @@ Desenvolvemos parte do nosso projeto, fazendo a interface web e mobile da aplica
 - Para ver a aplicação no celular, é preciso baixar o Expo Go e escanear o código QR disponibilizado ao executar o comando `npm start` no projeto.
 
 ## Aula 3
+
+Criamos o back-end da aplicação.
