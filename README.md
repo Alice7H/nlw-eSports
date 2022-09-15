@@ -154,3 +154,112 @@ Desenvolvemos parte do nosso projeto, fazendo a interface web e mobile da aplica
 ## Aula 3
 
 Criamos o back-end da aplicação.
+
+### Entidades
+
+```mermaid
+  graph LR;
+  games-->ads;
+```
+
+- Games:
+
+  - id
+  - title
+  - bannerUrl
+
+- Ads:
+
+  - id
+  - gameId
+  - name
+  - yearsPlaying
+  - discord
+  - weekDays
+  - hourStart
+  - hourEnd
+  - useVoiceChannel
+  - createAt
+
+- Caso de uso:
+  - Listagem de games com contagem de anúncios;
+  - Criação do novo anúncio;
+  - Listagem de anúncios por games;
+  - Busca do discord pelo ID do anúncio.
+
+### Tipos de parâmetros
+
+- Query usado para persistir estado, filtro, ordenação, paginação. Os parâmetros são nomeados.
+
+- Route usado para acessar determinada página com algum identificador de recurso, os parâmetros não são nomeados.
+
+- Body usado para envio de informações sensíveis, ou envio de formulários com dados pessoais e senhas.
+
+### Banco de Dados
+
+Caso não esteja muito familiarizado com banco de dados, utilize um banco de dado relacional.
+Usaremos o SQLite por ser prático e acessível.
+
+Bancos não relacionais são mais suscetíveis à desorganização ou várias modificações, quando não são bem estruturados.
+
+#### Comunicação com banco de dados
+
+- node-sqlite3: driver nativo (uma camada de baixo nível que faz a conexão com o banco de dados) entre node e SQLite.
+  Este tipo de comunicação requer conhecimento maior em relação à sintaxe SQL.
+
+- Query builder:
+
+  Significa construtor de consulta, permite que você construa instruções sql em um programático e independente de banco de dados. No caso, usamos o Knex.js.
+
+  - Knexjs: é um query builder para NodeJs capaz de conectar com Postgres, SqlServer, Mysql, MariaDb, Oracle, Amazon e SQLite3.
+
+- ORM:
+  Significa Object-Relational Mapping ou mapeamento objeto-relacional em português.
+  É uma técnica que ajuda você a consultar e manipular dados de bancos de dados usando um paradigma orientado a objetos.
+  Ex: TypeORM, Sequelize e Prisma.
+
+  - Prisma: é uma ferramenta open source, um ORM com 3 camadas principais em sua arquitetura.
+    - Prisma Client: um construtor de queries gerado automaticamente e type-safe para Node.js e TypeScript;
+    - Prisma Migrate: sistema de migração;
+    - Prisma Studio: o produto principal da tecnologia. Trata-se de uma interface do usuário feita para visualizar e editar os dados na database;
+
+#### Configurações do Prisma
+
+- Instalamos o prisma com o comando `npm install prisma --save-dev` ou `npm install prisma -D`.
+
+- E inicializamos ele com o comando `npx prisma init --datasource-provider sqlite` que gera um diretório com um arquivo de esquema Prisma e um arquivo de ambiente.
+
+- Configuramos o diretório que o prisma irá gerar um arquivo de banco de dados no documento .env.
+
+- Criamos um modelo que representa a tabela Games.
+
+- Rodamos o comando `npx prisma migrate dev`
+
+- Informamos o nome para gerar uma migration: `create table games`, essa migrations contém uma versão de controle da tabela gerada.
+
+- O comando `npx prisma studio`, irá gerar uma interface gráfica para navegar no banco de dados, fazer filtros, paginação e criar novos registros das tabelas.
+
+- Criamos um modelo Ads.
+
+- Rodamos o comando `npx prisma migrate dev`
+
+- Informamos o nome para a migration `create table ads`.
+
+- Extensão SQLite:
+  No Visual Studio Code (VS Code), podemos usá-la para explorar informações do banco de dados SQLite.
+
+  Após a instalação da extensão podemos, em cima do arquivo `db.sqlite`, clicar com o botão direito do mouse e selecionar a primeira opção `Open Database`.
+
+  Isso exibirá uma opção no explorador do VS Code denominado SQLITE EXPLORER, onde podemos ver as informações da tabela que criamos.
+
+- Populamos a tabela de jogos no prisma studio.
+
+- Rodamos o comando `npm install @prisma/client`.
+
+- O comando `npx prisma generate` é responsável por gerar uma pasta client no node_modules, com informações relacionados às tabelas criadas.
+
+### Outras configurações:
+
+Adicionamos a flag `--exit-child` no arquivo package.json, na parte de scripts, onde rodamos a aplicação em modo de desenvolvimento. Isso serve para fechar uma conexão antiga e abrir uma nova quando modifico algum arquivo no projeto, fazendo o node reinicializar normalmente.
+
+Para a aplicação aceitar requisições do front-end, precisamos configurar o cors e como usamos o typescript, precisamos instalar o `npm i @types/cors`.
