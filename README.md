@@ -179,7 +179,7 @@ Criamos o back-end da aplicação.
   - hourStart
   - hourEnd
   - useVoiceChannel
-  - createAt
+  - createdAt
 
 - Caso de uso:
   - Listagem de games com contagem de anúncios;
@@ -263,3 +263,38 @@ Bancos não relacionais são mais suscetíveis à desorganização ou várias mo
 Adicionamos a flag `--exit-child` no arquivo package.json, na parte de scripts, onde rodamos a aplicação em modo de desenvolvimento. Isso serve para fechar uma conexão antiga e abrir uma nova quando modifico algum arquivo no projeto, fazendo o node reinicializar normalmente.
 
 Para a aplicação aceitar requisições do front-end, precisamos configurar o cors e como usamos o typescript, precisamos instalar o `npm i @types/cors`.
+
+## Aula 4
+
+Estruturamos parte do formulário de anúncios de games da nossa aplicação.
+
+### Aplicação Web
+
+- Fizemos a chamada ao servidor para listar os jogos.
+
+- Usamos a biblioteca de componentes de UI [Radix]() para ganhar tempo e não precisar nos preocupar com acessibilidade.
+
+- Rodamos o comando `npm install @radix-ui/react-dialog` para adicionar o componente `dialog`.
+
+- Listamos os jogos e criamos a tela com o formulário de anúncios.
+
+### Aplicação mobile
+
+- Listamos os games, da mesma forma que fizemos na aplicação web.
+
+- Adicionamos a biblioteca react navigation para isso, uso o comando `npm install @react-navigation/native` e instalo as dependências: `npx expo install react-native-screens`
+
+- Usamos o componente `SafeAreaView` do react-native-safe-area-context.
+
+- Instalamos um tipo de estratégia de navegação baseado nos existentes: Stack, Tab & Drawer.
+
+- Usamos o `npm install @react-navigation/native-stack`
+
+- Usamos os ícones já disponível pela expo: `@expo/vector-icons`.
+
+- Criamos as rotas para as telas home e game.
+
+- Criamos a tela de game com os seus anúncios.
+
+- Instalamos ícones do phosphor: `npm install --save phosphor-react-native`
+  e o `npx expo install react-native-svg`.
