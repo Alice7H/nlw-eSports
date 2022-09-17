@@ -262,7 +262,7 @@ Bancos não relacionais são mais suscetíveis à desorganização ou várias mo
 
 Adicionamos a flag `--exit-child` no arquivo package.json, na parte de scripts, onde rodamos a aplicação em modo de desenvolvimento. Isso serve para fechar uma conexão antiga e abrir uma nova quando modifico algum arquivo no projeto, fazendo o node reinicializar normalmente.
 
-Para a aplicação aceitar requisições do front-end, precisamos configurar o cors e como usamos o typescript, precisamos instalar o `npm i @types/cors`.
+Para a aplicação aceitar requisições do front-end, precisamos configurar o cors e como usamos o typescript, precisamos instalar `npm i cors` e o `npm i @types/cors`.
 
 ## Aula 4
 
@@ -298,3 +298,79 @@ Estruturamos parte do formulário de anúncios de games da nossa aplicação.
 
 - Instalamos ícones do phosphor: `npm install --save phosphor-react-native`
   e o `npx expo install react-native-svg`.
+
+## Aula 5
+
+- Finalização do projeto com funcionalidades extras;
+- Conexão com a API web e mobile;
+- Colocar ele no mundo;
+
+### Interface Web
+
+- Criamos um componente chamado CreateAdModal afim de organizar e para diminuir a quantidade de código no arquivo `App.tsx`.
+
+- Instalamos o checkbox do Radix UI com o comando `npm install @radix-ui/react-checkbox`
+
+- Estilizamos do checkbox de acordo com o modelo do figma.
+
+- Instalamos o toggle group do Radix UI, usando o comando `npm install @radix-ui/react-toggle-group` para arrumar os dias da semana
+
+- Instalamos o axios com `npm i axios` e trocamos o fetch API pelo axios.
+
+- Terminamos o formulário de anúncio e o integramos ao back-end.
+
+### Interface Mobile
+
+- Criamos e estilizamos um componente de modal chamado de DuoMatch.
+
+- A modal serve para exibir e copiar o usuário do Discord anunciado em determinado jogo.
+
+- Usamos o comando `expo install expo-clipboard` para copiar o usuário do Discord em uma área de transferência.
+
+#### Notificação
+
+- Notificar o usuário a cada anúncio publicado usando o `expo install expo-notifications`
+
+- Pedir autorização para notificar o usuário com o `getPermissionsAsync`.
+
+- Para escutar as notificações uso o`expo-modules-core`.
+
+- Para usar as notificações push com o token, preciso fazer login na expo, preciso ter uma conta na expo e rodar o comando `expo login`, inserindo as informações de usuário/email e senha cadastrados no [site](https://expo.dev/);
+
+- Usamos a interface da expo para testar a notificação no [Push notifications tool](https://expo.dev/notifications).
+
+- Podemos enviar solicitações POST diretamente para nossa API HTTP/2 `https://exp.host/--/api/v2/push/send`, adicionando os seguintes cabeçalhos HTTP:
+
+```
+  host: exp.host
+  accept: application/json
+  accept-encoding: gzip, deflate
+  content-type: application/json
+```
+
+- Para mais informações veja [como implementar](https://docs.expo.dev/push-notifications/sending-notifications/)
+
+- Usando o cUrl:
+
+```
+  curl -H "Content-Type: application/json" -X POST "https://exp.host/--/api/v2/push/send" -d '{
+    "to": "ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]",
+    "title":"hello",
+    "body": "world"
+  }'
+```
+
+### Ideias
+
+- Usar o select do Radix UI e estilizar ele.
+- Trocar ícone do select.
+- Usar o comando `npm install @radix-ui/react-select`.
+- Rotas
+- Lista de Ads por jogos
+- Conectar com o discord
+- Carrossel (keen-slider)
+- Responsividade
+- Validação com o react-hook-form
+- Se puder, remover o ícone de relógio do campo hourStart e hourEnd.
+- Autenticação com discord ?
+- Notificação através do back-end
