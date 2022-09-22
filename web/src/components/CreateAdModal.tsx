@@ -43,16 +43,20 @@ export default function CreateAdModal() {
         useVoiceChannel: useVoiceChannel, 
       })
       alert('Anúncio adicionado com sucesso!');   
-      handleReset(event);    
+      handleResetForm(event);    
     } catch(error){
       console.log(error);
       alert('Erro ao adicionar anúncio');
     }
   }
 
-  function handleReset(event : FormEvent) {
+  function handleResetForm(event : FormEvent) {
     const form = event.target as HTMLFormElement;
     form.reset();
+    resetOthersStates();
+  }
+  
+  function resetOthersStates() {
     setGameSelected('');
     setWeekDays([]);
     setUseVoiceChannel(false);
@@ -61,12 +65,12 @@ export default function CreateAdModal() {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
-      <Dialog.Content className="fixed bg-[#2A2634] py-8 px-10 text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg w-[480px] shadow-lg shadow-black/25">
+      <Dialog.Content className="bg-[#2A2634] py-4 px-5 md:py-8 md:px-10 text-white w-full md:w-[480px] h-full overflow-y-auto fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-lg shadow-black/25">
         <Dialog.Title className="text-3xl font-black">
           Publique um anúncio
         </Dialog.Title>
 
-        <form id="gameForm" onSubmit={handleCreateAd} className="mt-8 flex flex-col gap-4">
+        <form id="gameForm" onSubmit={handleCreateAd} className="mt-8 flex flex-col md:gap-4">
           <div className="flex flex-col gap-2">
             <label htmlFor="game" className="font-semibold">
               Qual o game?
@@ -113,7 +117,7 @@ export default function CreateAdModal() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="yearsPlaying">Joga há quantos anos</label>
               <Input
@@ -134,7 +138,7 @@ export default function CreateAdModal() {
             </div>
           </div>
 
-          <div className="flex gap-6">
+          <div className="flex flex-col md:flex-row gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="weekDays">Quando costuma jogar?</label>
               <ToggleGroup.Root 
@@ -235,7 +239,7 @@ export default function CreateAdModal() {
             <Dialog.Close
               className="bg-zinc-500 hover:bg-zinc-600 rounded-md px-5 h-12 font-semibold"
               type="button"
-              onClick={()=> setGameSelected('')}
+              onClick={resetOthersStates}
             >
               Cancelar
             </Dialog.Close>
