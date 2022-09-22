@@ -1,3 +1,11 @@
+<h1 align="center">
+
+![NLW - eSports](/web/public/logo.svg)
+<a>
+🎮 NLW - eSports 🎮
+</a>
+
+</h1>
 ## AULA 1
 
 Nessa aula construímos as bases para iniciar o nosso projeto: o Find your DUO, fazendo o setup do ambiente de desenvolvimento com Node, React e React Native.

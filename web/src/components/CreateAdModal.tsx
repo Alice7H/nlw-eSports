@@ -1,9 +1,10 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { Check, GameController } from 'phosphor-react';
+import { CaretDown, Check, GameController } from 'phosphor-react';
 import Input from './Form/Input';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Checkbox from '@radix-ui/react-checkbox';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import * as Select from '@radix-ui/react-select';
 import axios from 'axios';
 
 interface Games {
@@ -15,6 +16,7 @@ export default function CreateAdModal() {
   const [games, setGames] = useState<Games[]>([]);
   const [weekDays, setWeekDays] = useState<string[]>([]);
   const [useVoiceChannel, setUseVoiceChannel] = useState(false);
+  const [gameSelected,setGameSelected] = useState<string>('');
 
   useEffect(() => {
     axios(`http://localhost:3333/games`)
@@ -30,9 +32,8 @@ export default function CreateAdModal() {
     if(!data.name){
       return;
     }
-
     try {
-      await axios.post(`http://localhost:3333/games/${data.game}/ads`, {
+      await axios.post(`http://localhost:3333/games/${gameSelected}/ads`, {
         name: data.name,
         yearsPlaying: Number(data.yearsPlaying),
         discord: data.discord,
@@ -40,13 +41,21 @@ export default function CreateAdModal() {
         hourStart: data.hourStart,
         hourEnd: data.hourEnd,
         useVoiceChannel: useVoiceChannel, 
-      });
-      alert('Anúncio adicionado com sucesso!');
-      
+      })
+      alert('Anúncio adicionado com sucesso!');   
+      handleReset(event);    
     } catch(error){
       console.log(error);
       alert('Erro ao adicionar anúncio');
     }
+  }
+
+  function handleReset(event : FormEvent) {
+    const form = event.target as HTMLFormElement;
+    form.reset();
+    setGameSelected('');
+    setWeekDays([]);
+    setUseVoiceChannel(false);
   }
 
   return (
@@ -57,24 +66,41 @@ export default function CreateAdModal() {
           Publique um anúncio
         </Dialog.Title>
 
-        <form onSubmit={handleCreateAd} className="mt-8 flex flex-col gap-4">
+        <form id="gameForm" onSubmit={handleCreateAd} className="mt-8 flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <label htmlFor="game" className="font-semibold">
               Qual o game?
-            </label>
-            <select
-              name="game"
-              id="game"
-              className="bg-zinc-900 py-3 px-4 rounded text-small placeholder:text-zinc-500"
-            >
-              <option disabled selected>Selecione o game que deseja jogar</option>
-              {games &&
-                games.map((game) => (
-                  <option value={game.id} key={game.id}>
-                    {game.title}
-                  </option>
-                ))}
-            </select>
+            </label> 
+            
+            <Select.Root value={gameSelected} onValueChange={setGameSelected}>
+              <Select.Trigger 
+                name="game"
+                id="game"
+                className="flex justify-between bg-zinc-900 py-3 px-4 rounded text-small text-white"
+              >
+                <Select.Value>
+                  { gameSelected ? games.find(game => game.id === gameSelected)?.title : 'Selecione o game que deseja jogar' }
+                </Select.Value>
+                <Select.Icon><CaretDown size={24} /></Select.Icon>
+              </Select.Trigger>
+
+              <Select.Portal>
+                <Select.Content className="py-3 px-4 rounded text-small text-white">
+                <Select.ScrollUpButton />
+                <Select.Viewport>
+                {games && games.map(game => (
+                  <Select.Item 
+                    value={game.id} 
+                    key={game.id} 
+                    className="bg-zinc-900 py-3 px-4 rounded text-small focus:bg-violet-500"
+                  >
+                    <Select.ItemText>{game.title}</Select.ItemText>
+                  </Select.Item>
+                ))} 
+                </Select.Viewport>
+                </Select.Content>
+              </Select.Portal>
+            </Select.Root>
           </div>
 
           <div className="flex flex-col gap-2">
@@ -204,12 +230,12 @@ export default function CreateAdModal() {
               </Checkbox.Indicator>
             </Checkbox.Root>
             Costumo me conectar ao chat de voz
-          </label>
-
+          </label>         
           <footer className="mt-4 flex justify-end gap-4">
             <Dialog.Close
               className="bg-zinc-500 hover:bg-zinc-600 rounded-md px-5 h-12 font-semibold"
               type="button"
+              onClick={()=> setGameSelected('')}
             >
               Cancelar
             </Dialog.Close>
