@@ -1,0 +1,15 @@
+.arrow {
+  background-color: rgba(100, 43, 226, 0.7);
+  border-radius: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  cursor: pointer;
+}
+.arrow--left {
+  left: 0px;
+}
+.arrow--right {
+  left: auto;
+  right: 0px;
+}

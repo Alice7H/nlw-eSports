@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Ads from './pages/Ads';
 import Home from './pages/Home';
 import './styles/main.css';
+import 'keen-slider/keen-slider.min.css'
 
 export default function App() {
   return(
