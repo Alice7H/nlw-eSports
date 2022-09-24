@@ -1,12 +1,15 @@
-<h1 align="center"> ![NLW - eSports](/web/public/logo.svg) </h1>
+<h1 align="center"> 
+  <img alt="Banner" title="Banner" src="./web/public/logo.svg" />
+  <p>🎮[NLW - eSports]🎮</p>
+</h1>
 
-## AULA 1
+## Aula 1
 
 Nessa aula construímos as bases para iniciar o nosso projeto: o Find your DUO, fazendo o setup do ambiente de desenvolvimento com Node, React e React Native.
 
 Instrutores: Diego Schell Fernandes e Rodrigo Gonçalves
 
-### NLW SERVER
+### Nlw Server
 
 - Instalar o node.
 - Rodar o `npm init -y` para criar o arquivo package.json.
@@ -42,7 +45,7 @@ O Hoppscotch é um PWA ou (Progressive Web App), ou seja, é a página web ou si
 - Instalar o `npm i @types/express -D` pois o express não dá suporte ao typescript.
 - Instalar o `npm i ts-node-dev -D`, essa ferramenta compila o projeto com Typescript e reinicia o projeto quando o arquivo é modificado.
 
-### NLW WEB
+### Nlw Web
 
 Usamos o Vite que é uma ferramenta de construção para front-end, ele provê uma ferramenta de criação rápida comparada ao create-react-app (CRA).
 
@@ -68,7 +71,7 @@ export default defineConfig({
 });
 ```
 
-### NLW MOBILE
+### Nlw Mobile
 
 - Abordagem nativa:
 
