@@ -1,11 +1,5 @@
-<h1 align="center">
+<h1 align="center"> ![NLW - eSports](/web/public/logo.svg) </h1>
 
-![NLW - eSports](/web/public/logo.svg)
-<a>
-🎮 NLW - eSports 🎮
-</a>
-
-</h1>
 ## AULA 1
 
 Nessa aula construímos as bases para iniciar o nosso projeto: o Find your DUO, fazendo o setup do ambiente de desenvolvimento com Node, React e React Native.
@@ -368,17 +362,12 @@ Estruturamos parte do formulário de anúncios de games da nossa aplicação.
   }'
 ```
 
-### Ideias
+### Extras
 
 - Usar o select do Radix UI e estilizar ele.
-- Trocar ícone do select.
-- Usar o comando `npm install @radix-ui/react-select`.
-- Rotas
-- Lista de Ads por jogos
-- Conectar com o discord
-- Carrossel (keen-slider)
 - Responsividade
-- Validação com o react-hook-form
-- Se puder, remover o ícone de relógio do campo hourStart e hourEnd.
-- Autenticação com discord ?
-- Notificação através do back-end
+- Rotas
+- Listar Ads por jogos
+- Carrossel (keen-slider)
+- Remover o ícone de relógio do campo hourStart e hourEnd.
+- Página 404

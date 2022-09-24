@@ -44,7 +44,10 @@ export default function Home() {
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
       breakpoints: {
         "(min-width: 425px)": {
-          slides: { origin: "center", perView: 2, spacing: 5 },
+          slides: { perView: 2, spacing: 25 },
+        },
+        "(min-width: 570px)": {
+          slides: { perView: 2.5, spacing: 25 },
         },
         "(min-width: 768px)": {
           slides: { perView: 3, spacing: 25 },
@@ -56,7 +59,11 @@ export default function Home() {
           slides: { perView: 6, spacing: 25 },
         },
       },
-      slides: { origin: "center", perView: 1.5},
+      slides: { 
+        origin: "center", 
+        perView: 1.5, 
+        spacing: 5 
+      },
       slideChanged(slider) {
         setCurrentSlide(slider.track.details.rel)
       },
@@ -78,7 +85,7 @@ export default function Home() {
         Seu <span className="text-transparent bg-nlw-gradient bg-clip-text">duo</span> está aqui.
       </h1>
     
-      <div ref={sliderRef} className="keen-slider mt-16 px-4 py-3"> 
+      <div ref={sliderRef} className="keen-slider mt-16 px-4 py-3 max-w-[90%]"> 
         { games.map(game => 
           <GameBanner 
             bannerUrl={game.bannerUrl} 

@@ -1,11 +1,15 @@
 import { useState, useEffect, FormEvent } from 'react';
-import { CaretDown, Check, GameController } from 'phosphor-react';
 import Input from './Form/Input';
+import Button from './Form/Button';
+import TimePicker from './Form/TimePicker';
+
 import * as Dialog from '@radix-ui/react-dialog';
 import * as Checkbox from '@radix-ui/react-checkbox';
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import * as Select from '@radix-ui/react-select';
+
 import axios from 'axios';
+import { CaretDown, Check, GameController } from 'phosphor-react';
 
 interface Games {
   id: string;
@@ -14,6 +18,8 @@ interface Games {
 
 export default function CreateAdModal() {
   const [games, setGames] = useState<Games[]>([]);
+  const [startDate, setStartDate] = useState<Date>();
+  const [endDate, setEndDate] = useState<Date>();
   const [weekDays, setWeekDays] = useState<string[]>([]);
   const [useVoiceChannel, setUseVoiceChannel] = useState(false);
   const [gameSelected,setGameSelected] = useState<string>('');
@@ -41,7 +47,7 @@ export default function CreateAdModal() {
         hourStart: data.hourStart,
         hourEnd: data.hourEnd,
         useVoiceChannel: useVoiceChannel, 
-      })
+      }) 
       alert('Anúncio adicionado com sucesso!');   
       handleResetForm(event);    
     } catch(error){
@@ -59,6 +65,8 @@ export default function CreateAdModal() {
   function resetOthersStates() {
     setGameSelected('');
     setWeekDays([]);
+    setStartDate(undefined);
+    setEndDate(undefined);
     setUseVoiceChannel(false);
   }
 
@@ -204,19 +212,24 @@ export default function CreateAdModal() {
                 </ToggleGroup.Item>
               </ToggleGroup.Root>
             </div>
-            <div className="flex flex-col gap-2 flex-1">
+            <div className="flex flex-col gap-2">
               <label htmlFor="hourStart">Qual horário do dia?</label>
-              <div className="grid grid-cols-2 gap-2">
-                <Input
-                  type="time"
+              <div className="flex flex-auto justify-between gap-4">             
+                <TimePicker
+                  selected={startDate}
+                  onChange={(date:Date) => setStartDate(date)}           
                   id="hourStart"
                   name="hourStart"
+                  placeholderText="De"
                   aria-placeholder="De"
                 />
-                <Input
-                  type="time"
+
+                <TimePicker
+                  selected={endDate}
+                  onChange={(date:Date) => setEndDate(date)}
                   id="hourEnd"
                   name="hourEnd"
+                  placeholderText="Até"
                   aria-placeholder="Até"
                 />
               </div>
@@ -244,13 +257,10 @@ export default function CreateAdModal() {
               Cancelar
             </Dialog.Close>
 
-            <button
-              className="flex items-center gap-3 bg-violet-500 hover:bg-violet-600 rounded-md px-5 h-12 font-semibold"
-              type="submit"
-            >
+            <Button type="submit">
               <GameController size={24} />
               Encontrar duo
-            </button>
+            </Button>
           </footer>
         </form>
       </Dialog.Content>
