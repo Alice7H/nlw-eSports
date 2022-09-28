@@ -371,6 +371,8 @@ Estruturamos parte do formulário de anúncios de games da nossa aplicação.
 - Responsividade
 - Rotas
 - Listar Ads por jogos
-- Carrossel (keen-slider)
-- Remover o ícone de relógio do campo hourStart e hourEnd.
-- Página 404
+- Usar Carrossel (keen-slider)
+- Remover o ícone de relógio do campo hourStart e hourEnd (react-datetimepicker)
+- Adicionar página 404
+- Validação web com o react-hook-form
+- Usar react-hot-toast

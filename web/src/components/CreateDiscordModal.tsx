@@ -20,10 +20,7 @@ export default function CreateDiscordModal({ adId, username }: CreateDiscordModa
 
   function handleGetDiscord(){
     axios.get(`http://localhost:3333/ads/${adId}/discord`)
-    .then(response => {
-      console.log(response.data);
-      setDiscord(response.data.discord);
-    })
+    .then(response => setDiscord(response.data.discord))
     .catch(error => console.log(error.message));
   }
 

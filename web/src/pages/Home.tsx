@@ -35,10 +35,14 @@ export default function Home() {
   const [loaded, setLoaded] = useState(false);
   const [counter, setCounter] = useState(1);
 
-  useEffect(()=> {
+  function getGames(){
     axios(`http://localhost:3333/games`)
     .then(response => setGames(response.data))
     .catch(error => alert(error.message));
+  }
+
+  useEffect(()=> {
+    getGames();
   },[]);
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
@@ -114,7 +118,7 @@ export default function Home() {
 
       <Dialog.Root>
         <CreateAdBanner/>
-        <CreateAdModal/>
+        <CreateAdModal loadGames={getGames}/>
       </Dialog.Root>
     </div>
   )

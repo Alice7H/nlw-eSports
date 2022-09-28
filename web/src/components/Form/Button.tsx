@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export default function Button({children, type, ...rest}: ButtonProps ) {
+export default function Button({children, ...rest}: ButtonProps ) {
   return (
     <button 
       {...rest}
