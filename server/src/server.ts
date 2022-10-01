@@ -33,8 +33,6 @@ app.post('/games/:id/ads', async(request, response) => {
   const gameId = request.params.id;
   const body: any = request.body;
 
-  // validation library zod javascript
-
   const ad = await prisma.ad.create({
     data: {
       gameId,
@@ -47,8 +45,7 @@ app.post('/games/:id/ads', async(request, response) => {
       useVoiceChannel: body.useVoiceChannel,
     }
   });
-
-  return response.status(200).json(ad);
+  return response.status(201).json(ad);
 });
 
 // List ad by games

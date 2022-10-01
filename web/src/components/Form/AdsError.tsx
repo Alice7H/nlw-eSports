@@ -15,10 +15,13 @@ export default function AdsError({errors}:AdsErrorProps) {
       { errors.weekDays?.type === "required" && <MessageError message="Informe quais dias da semana você joga" /> }
       { errors.discord?.type === "required" && <MessageError message="Informe código do discord" /> }
       { errors.yearsPlaying?.type === "required" && <MessageError message="Informe há quantos anos joga" /> }
-
+      
       { errors.yearsPlaying?.type === "min" && <MessageError message="A idade de jogo deve ser no mínimo 0" /> }
+      { errors.yearsPlaying?.type === "max" && <MessageError message="A idade de jogo deve ser no máximo 150" /> }
       { errors.name?.type === "minLength" && <MessageError message="O nome (ou apelido) possui no mínimo 3 caracteres" /> }
-      { errors.name?.type === "maxLength" && <MessageError message="O nome (ou apelido) possui no máximo 50 caracteres" /> }
+      { errors.name?.type === "maxLength" && <MessageError message="O nome (ou apelido) possui no máximo 50 caracteres" /> } 
+      { errors.yearsPlaying?.type === "pattern" && <MessageError message="A idade de jogo deve ser um número inteiro" />}
+      { errors.discord?.type === "pattern" && <MessageError message="Discord inválido" /> }
     </>
   )
 }

@@ -112,6 +112,7 @@ export default function CreateAdModal({loadGames} : Props) {
               register={register}
               required
               min={0}
+              pattern={/^\d+$/}
             />
           </div>
          
@@ -124,6 +125,7 @@ export default function CreateAdModal({loadGames} : Props) {
               placeholder="Usuario#0000"
               register={register}
               required
+              pattern={/^(?!(here|everyone))^(?!.*(discord|`{3})).[^\@\#\:\s]{2,32}#\d{4}$/}
             />
           </div>
         </div>

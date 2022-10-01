@@ -9,15 +9,16 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   min?: number;
   max?: number;
   minLength?: number; 
-  maxLength?: number; 
+  maxLength?: number;
+  pattern?: any;
 }
 
-function Input({register, label, required, min, max, minLength, maxLength, ...rest}: InputProps) {
+function Input({register, label, required, min, max, minLength, maxLength, pattern, ...rest}: InputProps) {
 
   return (
     <>
       <input 
-        {...register(label,{ required, min, max, minLength, maxLength })}  
+        {...register(label,{ required, min, max, minLength, maxLength, pattern })}  
         {...rest}
         className="bg-zinc-900 py-3 px-4 rounded text-small placeholder:text-zinc-500"
       /> 
